@@ -1,178 +1,125 @@
 <!DOCTYPE html>
-<html style="font-size: 16px;" lang="es"><head>
+<html style="font-size: 16px;" lang="es">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords"
-      content="¡Vamos a Celebrar!, ​Ya Solo Faltan..., ¡Acompáñanos a el día!, Te esperamos enNombre del salón, ¡No Faltes!​, Confirma tu asistencia">
-
-     <meta property="og:title" content="Invitación Emely Ivanna">
+    <meta name="keywords" content="¡Vamos a Celebrar!, ​Ya Solo Faltan..., ¡Acompáñanos a el día!, Te esperamos enNombre del salón, ¡No Faltes!​, Confirma tu asistencia">
+    <meta property="og:title" content="Invitación Emely Ivanna">
     <meta property="og:description" content="¡Vamos a celebrar!">
     <meta property="og:image" itemprop="image" content="https://invitacion-interactiva.netlify.app/files/miniatura.png" />
-
-    
     <title>Invitación</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
     <link rel="stylesheet" href="Invitación.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer></script>
-
-    <meta name="generator" content="Nicepage 5.11.4, nicepage.com">
-
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <link id="u-theme-google-font" rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     <meta name="theme-color" content="#3f62f1">
     <meta property="og:type" content="website">
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
-
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.querySelector('video');
+            var playButton = document.getElementById('play-button');
+            var pauseButton = document.getElementById('pause-button');
 
-document.addEventListener('DOMContentLoaded', function() {
-  var video = document.querySelector('video');
-  var botonDireccion = document.getElementById('boton-direccion');
-  var botonAsistencia = document.getElementById('boton-asistencia');
+            playButton.addEventListener('click', function() {
+                video.play();
+            });
 
-  // Función para detener el video
-  function stopVideo() {
-    video.pause();
-  }
+            pauseButton.addEventListener('click', function() {
+                video.pause();
+            });
 
-  // Evento antes de descargar la página
-  window.addEventListener('beforeunload', function() {
-    stopVideo();
-  });
+            video.addEventListener('timeupdate', function() {
+                // Aquí puedes agregar lógica para mostrar u ocultar botones dependiendo del tiempo del video
+            });
 
-  video.addEventListener('timeupdate', function() {
-    var currentTime = video.currentTime;
+            video.addEventListener('ended', function() {
+                // Aquí puedes realizar acciones cuando el video haya terminado
+            });
 
-    if (currentTime >= 24 && currentTime <= 35.1) {
-      botonDireccion.style.opacity = '1'; // Mostrar el botón
-      botonDireccion.style.pointerEvents = 'auto'; // Habilitar eventos de clic
-    } else {
-      botonDireccion.style.opacity = '0'; // Ocultar el botón
-      botonDireccion.style.pointerEvents = 'none'; // Deshabilitar eventos de clic
-    }
-
-    if (currentTime >= 41) {
-      botonAsistencia.style.opacity = '1'; // Mostrar el botón
-      botonAsistencia.style.pointerEvents = 'auto'; // Habilitar eventos de clic
-    } else {
-      botonAsistencia.style.opacity = '0'; // Ocultar el botón
-      botonAsistencia.style.pointerEvents = 'none'; // Deshabilitar eventos de clic
-    }
-  });
-
-  video.addEventListener('ended', function() {
-    botonDireccion.style.opacity = '0'; // Ocultar el botón
-    botonDireccion.style.pointerEvents = 'none'; // Deshabilitar eventos de clic
-    botonAsistencia.style.opacity = '0'; // Ocultar el botón
-    botonAsistencia.style.pointerEvents = 'none'; // Deshabilitar eventos de clic
-  });
-});
-</script>
-
+            // Deshabilitar clic derecho en el video
+            video.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        });
+    </script>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
 
-    
-  body {
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    background-color: #f0f0f0;
-    overflow: hidden;
+        #video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 177.78%; /* Aspect ratio 9:16 (1080x1920) */
+        }
 
-  }
+        #video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
-  #video-container {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 177.78%; /* Aspect ratio 9:16 (1080x1920) */
-  }
+        #button-container {
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
 
-  #video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ff66c4;
+            margin: 0 10px;
+            font-size: 20px;
+            color: #ffffff;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-  #button-container {
-  position: absolute;
-  bottom: 140px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#boton-direccion {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 35px;
-  border-radius: 25px;
-  background-color: #FF66C4;
-  margin-bottom: 0px; /* Ajusta el valor según el espaciado deseado entre los botones */
-  font-size: 12px;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-#boton-asistencia {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 35px;
-  border-radius: 25px;
-  background-color: #FF66C4;
-  margin-bottom: 0px; /* Ajusta el valor según el espaciado deseado entre los botones */
-  font-size: 12px;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-
-
-  .button i {
-    margin-right: 10px;
-  }
-</style>
-
-  </head>
-  <body>
+        .button i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
     <div id="video-container">
-      <video id="video" controls controlsList="nodownload" disablePictureInPicture>
-        <source src="files/inv.mp4" type="video/mp4">
-      </video>
+        <video id="video" src="files/inv.mp4" controls controlsList="nodownload" disablePictureInPicture></video>
     </div>
-
     <div id="button-container">
-
-      <a id="boton-direccion" href="https://maps.app.goo.gl/CFgL4Kr592EYFqhdA"
-        class="button fa-solid fa-location-dot"
-        style="color: #ffffff;"> <i class="fas fa-map-marker-alt"></i> VER
-        UBICACIÓN
-      </a>
-
-      <a id="boton-asistencia"
-        href="https://api.whatsapp.com/send?phone=+5216141426036&text=%C2%A1Hola%21+Muchas+gracias+por+la+invitaci%C3%B3n%2C+ah%C3%AD+estaremos%21%21+%F0%9F%A5%B3"
-        class="button">
-        <i class="fab fa-whatsapp"></i>CONFIRMAR ASISTENCIA</a>
+        <div id="play-button" class="button">
+            <i class="fas fa-play"></i>
+        </div>
+        <div id="pause-button" class="button">
+            <i class="fas fa-pause"></i>
+        </div>
     </div>
-
-    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"
-      crossorigin="anonymous"></script>
-  </body>
-
+    <div id="button-container">
+        <a id="boton-direccion" href="https://maps.app.goo.gl/CFgL4Kr592EYFqhdA" class="button fa-solid fa-location-dot" style="color: #ffffff;">
+            <i class="fas fa-map-marker-alt"></i>
+        </a>
+        <a id="boton-asistencia" href="https://api.whatsapp.com/send?phone=+5216141426036&text=%C2%A1Hola%21+Muchas+gracias+por+la+invitaci%C3%B3n%2C+ah%C3%AD+estaremos%21%21+%F0%9F%A5%B3" class="button">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+</body>
 </html>
+
