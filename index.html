@@ -4,13 +4,11 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <meta name="keywords"
-    content="¡Vamos a Celebrar!, ​Ya Solo Faltan..., ¡Acompáñanos a el día!, Te esperamos enNombre del salón, ¡No Faltes!​, Confirma tu asistencia">
+  <meta name="keywords" content="¡Vamos a Celebrar!, ​Ya Solo Faltan..., ¡Acompáñanos a el día!, Te esperamos enNombre del salón, ¡No Faltes!​, Confirma tu asistencia">
 
   <meta property="og:title" content="Invitación">
   <meta property="og:description" content="¡Vamos a celebrar!">
-  <meta property="og:image" itemprop="image" content="https://invitacion-Andresito.netlify.app/files/miniatura.png" />
-
+  <meta property="og:image" itemprop="image" content="https://invitacion-renato.netlify.app/files/miniatura.png">
 
   <title>Invitación</title>
   <link rel="stylesheet" href="nicepage.css" media="screen">
@@ -22,60 +20,13 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-  <link id="u-theme-google-font" rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+  <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
   <meta name="theme-color" content="#3f62f1">
   <meta property="og:type" content="website">
   <meta data-intl-tel-input-cdn-path="intlTelInput/">
 
   <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-  <script type="text/javascript">
-
-    document.addEventListener('DOMContentLoaded', function () {
-      var video = document.querySelector('video');
-      var botonDireccion = document.getElementById('boton-direccion');
-      var botonAsistencia = document.getElementById('boton-asistencia');
-
-      // Play video when clicked
-      video.addEventListener('click', function () {
-        if (video.paused) {
-          video.play();
-        } else {
-          video.pause();
-        }
-      });
-
-      // Show buttons at specific time intervals
-      video.addEventListener('timeupdate', function () {
-        var currentTime = video.currentTime;
-
-        if (currentTime >= 46 && currentTime <= 55) {
-          botonDireccion.style.opacity = '1'; // Show button
-          botonDireccion.style.pointerEvents = 'auto'; // Enable click events
-        } else {
-          botonDireccion.style.opacity = '0'; // Hide button
-          botonDireccion.style.pointerEvents = 'none'; // Disable click events
-        }
-
-        if (currentTime >= 57) {
-          botonAsistencia.style.opacity = '1'; // Show button
-          botonAsistencia.style.pointerEvents = 'auto'; // Enable click events
-        } else {
-          botonAsistencia.style.opacity = '0'; // Hide button
-          botonAsistencia.style.pointerEvents = 'none'; // Disable click events
-        }
-      });
-
-      // Hide buttons when video ends
-      video.addEventListener('ended', function () {
-        botonDireccion.style.opacity = '0'; // Hide button
-        botonDireccion.style.pointerEvents = 'none'; // Disable click events
-        botonAsistencia.style.opacity = '0'; // Hide button
-        botonAsistencia.style.pointerEvents = 'none'; // Disable click events
-      });
-    });
-  </script>
 
   <style>
     body {
@@ -96,17 +47,31 @@
       /* Aspect ratio 9:16 (1080x1920) */
     }
 
+    #poster {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('files/thumbnail.png') no-repeat center center;
+      background-size: cover;
+      transition: opacity 1s ease-in-out;
+      z-index: 1;
+      cursor: pointer;
+    }
+
     #video {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      z-index: 0;
     }
 
     #button-container {
       position: absolute;
-      bottom: 100px;
+      bottom: 80px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -121,14 +86,14 @@
       width: 200px;
       height: 35px;
       border-radius: 25px;
-      background-color: #098CCD;
-      margin-bottom: 0px;
-      /* Ajusta el valor según el espaciado deseado entre los botones */
+      background-color: #ff0000;
+      bottom: 0px;
       font-size: 12px;
-      color: #ffffff;
+      color: #000000;
       text-decoration: none;
-
-
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
     }
 
     #boton-asistencia {
@@ -138,79 +103,121 @@
       width: 200px;
       height: 35px;
       border-radius: 25px;
-      background-color: #098CCD;
+      background-color: #ff0000;
       margin-bottom: 0px;
-      /* Ajusta el valor según el espaciado deseado entre los botones */
       font-size: 12px;
-      color: #ffffff;
+      color: #000000;
       text-decoration: none;
-
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
     }
 
     .button i {
       margin-right: 10px;
     }
   </style>
-
 </head>
 
 <body>
   <div id="video-container">
+    <div id="poster"></div>
     <video id="video" playsinline disablePictureInPicture controlsList="nodownload">
       <source src="files/inv.mp4" type="video/mp4">
     </video>
   </div>
 
   <div id="button-container">
-
-
-        <a id="boton-asistencia"
-        href="https://api.whatsapp.com/send?phone=+526141426036&text=%C2%A1Hola%21+Muchas+gracias+por+la+invitaci%C3%B3n%2C+ah%C3%AD+estaremos%21%21+%F0%9F%A5%B3"
-        class="button">
-        <i class="fab fa-whatsapp"></i> CONFIRMAR ASISTENCIA</a>
     
-     <a id="boton-direccion" href="https://maps.app.goo.gl/c5V7mRNhaqK1nNYm6"
-        class="button fa-solid fa-location-dot"
-        style="color: #ffffff;"> <i class="fas fa-map-marker-alt"></i> VER
-        UBICACIÓN
-      </a>
-    
-        
      
 
-  
-    </div>
+     <a id="boton-asistencia" href="https://api.whatsapp.com/send?phone=+526691883457&text=%C2%A1Hola%21+Muchas+gracias+por+la+invitaci%C3%B3n%2C+ah%C3%AD+estaremos%21%21+%F0%9F%A5%B3" class="button">
+      <i class="fab fa-whatsapp"></i> <b>CONFIRMAR ASISTENCIA<b>
+    </a>
+    
+
+      <a id="boton-direccion" href="https://maps.app.goo.gl/iHwxBoVTa2Es8yhq5" class="button">
+      <i class="fas fa-map-marker-alt"></i> <b>VER UBICACIÓN<b>
+    </a>
+   
+ 
+  </div>
 
   <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var video = document.querySelector('video');
+      var poster = document.getElementById('poster');
+      var botonDireccion = document.getElementById('boton-direccion');
+      var botonAsistencia = document.getElementById('boton-asistencia');
 
+      poster.addEventListener('click', function () {
+        video.play();
+        poster.style.opacity = '0';
+        setTimeout(() => {
+          poster.style.display = 'none';
+        }, 1000);
+      });
 
-   <script>
-        // Desactivar el menú contextual sobre el video
-        document.getElementById('video').addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
+      video.addEventListener('click', function () {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
 
-        // Prevenir la descarga al mantener presionado en dispositivos móviles
-        document.getElementById('video').addEventListener('touchstart', function(e) {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        });
+      video.addEventListener('timeupdate', function () {
+        var currentTime = video.currentTime;
 
-        document.getElementById('video').addEventListener('touchend', function(e) {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        });
+        if (currentTime >= 21 && currentTime <= 31) {
+          botonDireccion.style.opacity = '1';
+          botonDireccion.style.pointerEvents = 'auto';
+        } else {
+          botonDireccion.style.opacity = '0';
+          botonDireccion.style.pointerEvents = 'none';
+        }
 
-        document.getElementById('video').addEventListener('touchmove', function(e) {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        });
-    </script>
-  
+        if (currentTime >= 33) {
+          botonAsistencia.style.opacity = '1';
+          botonAsistencia.style.pointerEvents = 'auto';
+        } else {
+          botonAsistencia.style.opacity = '0';
+          botonAsistencia.style.pointerEvents = 'none';
+        }
+      });
+
+      video.addEventListener('ended', function () {
+        botonDireccion.style.opacity = '0';
+        botonDireccion.style.pointerEvents = 'none';
+        botonAsistencia.style.opacity = '0';
+        botonAsistencia.style.pointerEvents = 'none';
+      });
+
+      document.getElementById('video').addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+
+      document.getElementById('video').addEventListener('touchstart', function (e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      });
+
+      document.getElementById('video').addEventListener('touchend', function (e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      });
+
+      document.getElementById('video').addEventListener('touchmove', function (e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
