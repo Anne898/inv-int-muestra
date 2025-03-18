@@ -8,7 +8,7 @@
 
   <meta property="og:title" content="Invitación">
   <meta property="og:description" content="¡Vamos a celebrar!">
-  <meta property="og:image" itemprop="image" content="https://invitacion-bluey.netlify.app/files/miniatura.png">
+  <meta property="og:image" itemprop="image" content="https://anna-julia.netlify.app/files/miniatura.png">
 
   <title>Invitación</title>
   <link rel="stylesheet" href="nicepage.css" media="screen">
@@ -71,7 +71,7 @@
 
     #button-container {
       position: absolute;
-      bottom: 70px;
+      bottom: 260px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -86,14 +86,14 @@
       width: 200px;
       height: 35px;
       border-radius: 25px;
-      background-color: #c0acef;
-      bottom: 0px;
+      background-color: #fd8fbb;
       font-size: 12px;
       color: #ffffff;
       text-decoration: none;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s;
+      margin-bottom: 20px;
     }
 
     #boton-asistencia {
@@ -103,7 +103,7 @@
       width: 200px;
       height: 35px;
       border-radius: 25px;
-      background-color: #c0acef;
+      background-color: #fd8fbb;
       margin-bottom: 0px;
       font-size: 12px;
       color: #ffffff;
@@ -111,10 +111,13 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s;
+
     }
 
     .button i {
       margin-right: 10px;
+      
+
     }
   </style>
 </head>
@@ -128,14 +131,16 @@
   </div>
 
   <div id="button-container">
+
+  <a id="boton-direccion" href="https://maps.app.goo.gl/iUwrzDy3AmAJWKHX7" class="button">
+      <i class="fas fa-map-marker-alt"></i> <b>VER UBICACIÓN<b>
+    </a>
     
      <a id="boton-asistencia" href="https://api.whatsapp.com/send?phone=+526141426036&text=%C2%A1Hola%21+Muchas+gracias+por+la+invitaci%C3%B3n%2C+ah%C3%AD+estaremos%21%21+%F0%9F%A5%B3" class="button">
       <i class="fab fa-whatsapp"></i> <b>CONFIRMAR ASISTENCIA<b>
     </a>
 
-     <a id="boton-direccion" href="https://maps.app.goo.gl/RUdM7UorUJPRU93Y8" class="button">
-      <i class="fas fa-map-marker-alt"></i> <b>VER UBICACIÓN<b>
-    </a>
+   
         
      
     
@@ -173,7 +178,7 @@
       video.addEventListener('timeupdate', function () {
         var currentTime = video.currentTime;
 
-        if (currentTime >= 27 && currentTime <= 35) {
+        if (currentTime >= 31.16) {
           botonDireccion.style.opacity = '1';
           botonDireccion.style.pointerEvents = 'auto';
         } else {
@@ -181,7 +186,7 @@
           botonDireccion.style.pointerEvents = 'none';
         }
 
-        if (currentTime >= 37) {
+        if (currentTime >= 31.16 ) {
           botonAsistencia.style.opacity = '1';
           botonAsistencia.style.pointerEvents = 'auto';
         } else {
