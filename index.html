@@ -152,79 +152,81 @@
 
   <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var video = document.querySelector('video');
-      var poster = document.getElementById('poster');
-      var botonDireccion = document.getElementById('boton-direccion');
-      var botonAsistencia = document.getElementById('boton-asistencia');
+   <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const video = document.getElementById('video');
+    const poster = document.getElementById('poster');
+    const botonDireccion = document.getElementById('boton-direccion');
+    const botonAsistencia = document.getElementById('boton-asistencia');
 
-      poster.addEventListener('click', function () {
-        video.play();
-        poster.style.opacity = '0';
-        setTimeout(() => {
-          poster.style.display = 'none';
-        }, 1000);
-      });
-
-      video.addEventListener('click', function () {
-        if (video.paused) {
-          video.play();
-        } else {
-          video.pause();
-        }
-      });
-
-      video.addEventListener('timeupdate', function () {
-        var currentTime = video.currentTime;
-
-        if (currentTime >= 31.16) {
-          botonDireccion.style.opacity = '1';
-          botonDireccion.style.pointerEvents = 'auto';
-        } else {
-          botonDireccion.style.opacity = '0';
-          botonDireccion.style.pointerEvents = 'none';
-        }
-
-        if (currentTime >= 31.16 ) {
-          botonAsistencia.style.opacity = '1';
-          botonAsistencia.style.pointerEvents = 'auto';
-        } else {
-          botonAsistencia.style.opacity = '0';
-          botonAsistencia.style.pointerEvents = 'none';
-        }
-      });
-
-      video.addEventListener('ended', function () {
-        botonDireccion.style.opacity = '0';
-        botonDireccion.style.pointerEvents = 'none';
-        botonAsistencia.style.opacity = '0';
-        botonAsistencia.style.pointerEvents = 'none';
-      });
-
-      document.getElementById('video').addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-      });
-
-      document.getElementById('video').addEventListener('touchstart', function (e) {
-        if (e.touches.length > 1) {
-          e.preventDefault();
-        }
-      });
-
-      document.getElementById('video').addEventListener('touchend', function (e) {
-        if (e.touches.length > 1) {
-          e.preventDefault();
-        }
-      });
-
-      document.getElementById('video').addEventListener('touchmove', function (e) {
-        if (e.touches.length > 1) {
-          e.preventDefault();
-        }
-      });
+    poster.addEventListener('click', function () {
+      video.play();
+      poster.style.opacity = '0';
+      setTimeout(() => {
+        poster.style.display = 'none';
+      }, 1000);
     });
-  </script>
+
+    video.addEventListener('click', function () {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+
+    function mostrarBotones() {
+      botonDireccion.style.opacity = '1';
+      botonDireccion.style.pointerEvents = 'auto';
+      botonAsistencia.style.opacity = '1';
+      botonAsistencia.style.pointerEvents = 'auto';
+    }
+
+    function ocultarBotones() {
+      botonDireccion.style.opacity = '0';
+      botonDireccion.style.pointerEvents = 'none';
+      botonAsistencia.style.opacity = '0';
+      botonAsistencia.style.pointerEvents = 'none';
+    }
+
+    video.addEventListener('timeupdate', function () {
+      const currentTime = video.currentTime;
+      if (currentTime >= 31.16) {
+        mostrarBotones();
+      } else {
+        ocultarBotones();
+      }
+    });
+
+    // Cuando termina el video, no se ocultan los botones
+    video.addEventListener('ended', function () {
+      mostrarBotones();
+    });
+
+    // Reinicia comportamiento cuando se vuelve a reproducir
+    video.addEventListener('play', function () {
+      if (video.currentTime < 29) {
+        ocultarBotones();
+      }
+    });
+
+    // Bloqueo de clic derecho y gestos
+    video.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+
+    ['touchstart', 'touchend', 'touchmove'].forEach(event => {
+      video.addEventListener(event, function (e) {
+        if (e.touches && e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    });
+  });
+</script>
+
+
+        
 </body>
 
 </html>
